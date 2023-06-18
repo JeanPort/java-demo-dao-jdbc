@@ -43,6 +43,7 @@ public class SellerDaoJDBC implements SellerDao{
 			st.setInt(5, obj.getDepartment().getId());
 			
 			int rowsAffected = st.executeUpdate();
+			
 			if (rowsAffected > 0) {
 				ResultSet rs = st.getGeneratedKeys();
 				if (rs.next()) {
@@ -54,15 +55,13 @@ public class SellerDaoJDBC implements SellerDao{
 				throw new DbExeption("Unexpected error! No rows affected!");
 			}
 			
-					
 		} catch (SQLException e) {
 			throw new DbExeption(e.getMessage());
 		}
 		finally {
 			DB.closeStatment(st);
 		}
-		
-		
+	
 	}
 
 	@Override
@@ -95,7 +94,20 @@ public class SellerDaoJDBC implements SellerDao{
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		
+		try {
+			st = conn.prepareStatement(
+					"DELETE FROM seller WHERE id = ?");
+			
+			st.setInt(1, id);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			throw new DbExeption(e.getMessage());
+		}
+		finally {
+			DB.closeStatment(st);
+		}
 		
 	}
 

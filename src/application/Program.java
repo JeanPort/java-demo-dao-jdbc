@@ -52,12 +52,12 @@ public class Program {
 		sellerDao.update(seller);
 		System.out.println("Update complit");
 		
+		System.out.println();
+		System.out.println("========TESTE SELLER 6 Seller delete==========");
 		
-		list2 = sellerDao.findAll();
+		sellerDao.deleteById(20);
+		System.out.println("Delete completed!");
 		
-		for (Seller seller3 : list2) {
-			System.out.println(seller3);
-		}
 		
 	}
 
