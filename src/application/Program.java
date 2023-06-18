@@ -42,6 +42,23 @@ public class Program {
 		sellerDao.insert(seller2);
 		
 		System.out.println("Inserted! New id = " + seller2.getId());
+		
+		System.out.println();
+		System.out.println("========TESTE SELLER 5 Seller update==========");
+		
+		seller = sellerDao.finfById(1);
+		seller.setName("Joaozinho");
+		
+		sellerDao.update(seller);
+		System.out.println("Update complit");
+		
+		
+		list2 = sellerDao.findAll();
+		
+		for (Seller seller3 : list2) {
+			System.out.println(seller3);
+		}
+		
 	}
 
 }
